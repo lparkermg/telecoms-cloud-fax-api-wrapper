@@ -39,7 +39,7 @@ namespace API.Auth
         {
             var completeUrl = _apiUrlBase + "authorization/oauth2/grant-client";
             var accessBody = "{\"client_id\":\"" + _clientId + "\",\"client_secret\":\"" + _clientSecret + "\"}";
-            var postResponse = PostHttpRequest(completeUrl, accessBody);
+            var postResponse = "";//PostHttpRequest(completeUrl, accessBody);
             var deserializedJson = JsonConvert.DeserializeObject<dynamic>(postResponse);
 
             var tempAccessToken = deserializedJson.access_token.ToString();
@@ -49,15 +49,5 @@ namespace API.Auth
 
             return new ClientGrantResponse(tempAccessToken,tempExpiresIn,tempTokenType,tempScope);
         }
-
-        private string PostHttpRequest(string uri, string body)
-        {
-            using (WebClient client = new WebClient())
-            {
-                client.Headers.Add("Content-Type","application/json");
-                return client.UploadString(uri, body);
-            }
-        }
-
     }
 }

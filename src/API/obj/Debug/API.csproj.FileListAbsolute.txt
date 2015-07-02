@@ -1,0 +1,1 @@
+C:\Projects\Work\tc-wrapper\src\API\obj\Debug\API.csprojResolveAssemblyReference.cache
