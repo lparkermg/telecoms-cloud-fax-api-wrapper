@@ -16,12 +16,10 @@ namespace API.Http
         {
             using (HttpClient client = new HttpClient())
             {
-                
-                var req = new HttpRequestMessage() {RequestUri = new Uri(uri), Method=HttpMethod.Post, Content=new StringContent(body) };
+                var req = new HttpRequestMessage() {RequestUri = new Uri(uri), Method=HttpMethod.Post,Content = new StringContent(body)};
 
                 foreach(var header in headers)
                     req.Headers.Add(header.Key,header.Value);
-
 
                 var resp = client.SendAsync(req).Result;
 
