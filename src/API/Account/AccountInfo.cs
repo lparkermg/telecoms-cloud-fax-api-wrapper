@@ -41,7 +41,7 @@ namespace API.Account
         {
             var completeUrl = _baseApiUrl + "account/info";
             SetHeaders();
-            var response = _httpCommands.HttpGet(completeUrl, "", _headers);
+            var response = _httpCommands.HttpGet(completeUrl, _headers);
 
             var deserializedJson = JsonConvert.DeserializeObject<dynamic>(response);
 
@@ -56,7 +56,6 @@ namespace API.Account
 
         private void SetHeaders()
         {
-            _headers.Add("Content-Type","application/json");
             _headers.Add("Authorization", _clientGrant.TokenType + " " + _clientGrant.AccessToken);
         }
 

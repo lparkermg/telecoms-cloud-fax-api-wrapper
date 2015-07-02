@@ -47,7 +47,7 @@ namespace API.Auth
         {
             var completeUrl = _apiUrlBase + "authorization/oauth2/grant-client";
             var accessBody = "{\"client_id\":\"" + _clientId + "\",\"client_secret\":\"" + _clientSecret + "\"}";
-            var postResponse = _httpCommands.HttpPost(completeUrl, accessBody, _headers);
+            var postResponse = _httpCommands.HttpPost(completeUrl, accessBody);
             var deserializedJson = JsonConvert.DeserializeObject<dynamic>(postResponse);
 
             var tempAccessToken = deserializedJson.access_token.ToString();

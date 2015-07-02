@@ -20,20 +20,16 @@ namespace API.Http
         /// </summary>
         /// <param name="uri">The URL of where to POST to.</param>
         /// <param name="body">What is going to be posted.</param>
-        /// <param name="headers">Headers required for posting.</param>
-        /// <returns></returns>
-        public string HttpPost(string uri, string body, Dictionary<string, string> headers)
+        /// <returns>JSON</returns>
+        public string HttpPost(string uri, string body)
         {
             using (HttpClient client = new HttpClient())
             {
-                var req = new HttpRequestMessage() {RequestUri = new Uri(uri), Method=HttpMethod.Post,Content = new StringContent(body)};
-
-                foreach(var header in headers)
-                    req.Headers.Add(header.Key,header.Value);
-
+                var req = new HttpRequestMessage() {RequestUri = new Uri(uri), Method=HttpMethod.Post,Content = new StringContent(body,Encoding.UTF8,"application/json")};
+                
                 var resp = client.SendAsync(req).Result;
 
-                return resp.Content.ToString();
+                return resp.Content.ReadAsStringAsync().Result;
             }
         }
 
@@ -41,21 +37,20 @@ namespace API.Http
         /// Make a Http Request using the GET method.
         /// </summary>
         /// <param name="uri">The URL of where to GET from.</param>
-        /// <param name="body">What to put in the GET. (If needed.)</param>
         /// <param name="headers">Headers required for getting.</param>
-        /// <returns></returns>
-        public string HttpGet(string uri, string body, Dictionary<string, string> headers)
+        /// <returns>JSON</returns>
+        public string HttpGet(string uri, Dictionary<string, string> headers)
         {
             using (HttpClient client = new HttpClient())
             {
-                var req = new HttpRequestMessage() { RequestUri = new Uri(uri), Method = HttpMethod.Get, Content = new StringContent(body)};
+                var req = new HttpRequestMessage() { RequestUri = new Uri(uri), Method = HttpMethod.Get};
 
                 foreach(var header in headers)
                     req.Headers.Add(header.Key,header.Value);
 
                 var resp = client.SendAsync(req).Result;
 
-                return resp.Content.ToString();
+                return resp.Content.ReadAsStringAsync().Result;
             }
         }
 

@@ -1,1 +1,10 @@
 C:\Projects\Work\tc-wrapper\src\Fax-Wrapper-Test\bin\Debug\Fax-Wrapper-Test.exe.config
+C:\Projects\Work\tc-wrapper\src\Fax-Wrapper-Test\bin\Debug\Fax-Wrapper-Test.exe
+C:\Projects\Work\tc-wrapper\src\Fax-Wrapper-Test\bin\Debug\Fax-Wrapper-Test.pdb
+C:\Projects\Work\tc-wrapper\src\Fax-Wrapper-Test\bin\Debug\API.dll
+C:\Projects\Work\tc-wrapper\src\Fax-Wrapper-Test\bin\Debug\Newtonsoft.Json.dll
+C:\Projects\Work\tc-wrapper\src\Fax-Wrapper-Test\bin\Debug\API.pdb
+C:\Projects\Work\tc-wrapper\src\Fax-Wrapper-Test\bin\Debug\Newtonsoft.Json.xml
+C:\Projects\Work\tc-wrapper\src\Fax-Wrapper-Test\obj\Debug\Fax-Wrapper-Test.csprojResolveAssemblyReference.cache
+C:\Projects\Work\tc-wrapper\src\Fax-Wrapper-Test\obj\Debug\Fax-Wrapper-Test.exe
+C:\Projects\Work\tc-wrapper\src\Fax-Wrapper-Test\obj\Debug\Fax-Wrapper-Test.pdb

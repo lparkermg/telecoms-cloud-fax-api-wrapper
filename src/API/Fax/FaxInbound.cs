@@ -43,7 +43,7 @@ namespace API
             var faxInfoCollection = new List<FaxInfo>();
             var completeUrl = _baseApiUrl + "fax/inbound/info?last_pointer=" + lastPointer;
             SetHeaders();
-            var response = _httpCommands.HttpGet(completeUrl, "", _headers);
+            var response = _httpCommands.HttpGet(completeUrl, _headers);
 
             var deserializedJson = JsonConvert.DeserializeObject<dynamic>(response);
 
@@ -81,7 +81,6 @@ namespace API
         {
             _headers = new Dictionary<string, string>
             {
-                {"Content-Type", "application/json"},
                 {"Authorization", _clientGrant.TokenType + " " + _clientGrant.AccessToken}
             };
         }
