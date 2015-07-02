@@ -10,6 +10,9 @@ using Newtonsoft.Json;
 
 namespace API.Account
 {
+    /// <summary>
+    /// Account related methods.
+    /// </summary>
     public class AccountInfo
     {
         private ClientGrantResponse _clientGrant;

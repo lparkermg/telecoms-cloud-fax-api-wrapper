@@ -10,6 +10,9 @@ using Newtonsoft.Json;
 
 namespace API
 {
+    /// <summary>
+    /// Fax related methods.
+    /// </summary>
     public class FaxInbound
     {
         private ClientGrantResponse _clientGrant;

@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 namespace API.Auth
 {
     /// <summary>
-    /// OAuth Object to get Access to the TelecomsCloud API
+    /// OAuth related methods.
     /// </summary>
     public class OAuth
     {
