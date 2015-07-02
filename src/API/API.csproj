@@ -42,15 +42,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account\AccountInfo.cs" />
     <Compile Include="Auth\OAuth.cs" />
     <Compile Include="Entities\AccountInfoResponse.cs" />
     <Compile Include="Entities\ClientGrantResponse.cs" />
     <Compile Include="Fax\FaxInbound.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Account\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
