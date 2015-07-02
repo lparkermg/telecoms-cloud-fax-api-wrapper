@@ -45,6 +45,7 @@
     <Compile Include="Auth\OAuth.cs" />
     <Compile Include="Entities\ClientGrantResponse.cs" />
     <Compile Include="Fax\FaxInbound.cs" />
+    <Compile Include="Http\HttpCommands.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
