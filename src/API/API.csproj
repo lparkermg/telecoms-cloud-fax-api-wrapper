@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Auth\OAuth.cs" />
+    <Compile Include="Entities\AccountInfoResponse.cs" />
     <Compile Include="Entities\ClientGrantResponse.cs" />
     <Compile Include="Fax\FaxInbound.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
