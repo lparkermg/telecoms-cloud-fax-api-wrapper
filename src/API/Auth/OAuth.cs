@@ -5,6 +5,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using API.Entities;
+using API.Http;
 using Newtonsoft.Json;
 
 namespace API.Auth
@@ -18,6 +19,7 @@ namespace API.Auth
         private string _clientSecret;
         private string _apiUrlBase;
 
+        private HttpCommands _httpCommands;
         /// <summary>
         /// Construtor for the OAuth object make sure all the dcetails are correctly entered here.
         /// </summary>
@@ -29,6 +31,8 @@ namespace API.Auth
             _clientId = clientId;
             _clientSecret = clientSecret;
             _apiUrlBase = baseUrl;
+
+            _httpCommands = new HttpCommands();
         }
 
         /// <summary>
@@ -39,7 +43,7 @@ namespace API.Auth
         {
             var completeUrl = _apiUrlBase + "authorization/oauth2/grant-client";
             var accessBody = "{\"client_id\":\"" + _clientId + "\",\"client_secret\":\"" + _clientSecret + "\"}";
-            var postResponse = "";//PostHttpRequest(completeUrl, accessBody);
+            var postResponse = 
             var deserializedJson = JsonConvert.DeserializeObject<dynamic>(postResponse);
 
             var tempAccessToken = deserializedJson.access_token.ToString();
