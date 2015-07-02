@@ -14,7 +14,7 @@ namespace API.Account
     {
         private ClientGrantResponse _clientGrant;
         private string _baseApiUrl;
-        private Dictionary<string, string> _headers;
+        private Dictionary<string, string> _headers = new Dictionary<string, string>();
 
         private HttpCommands _httpCommands;
 
