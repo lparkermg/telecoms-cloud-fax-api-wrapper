@@ -26,8 +26,18 @@ namespace API.Http
             using (HttpClient client = new HttpClient())
             {
                 var req = new HttpRequestMessage() {RequestUri = new Uri(uri), Method=HttpMethod.Post,Content = new StringContent(body,Encoding.UTF8,"application/json")};
-                
-                var resp = client.SendAsync(req).Result;
+
+                HttpResponseMessage resp;
+                try
+                {
+                    resp = client.SendAsync(req).Result;
+                }
+                catch (AggregateException ae)
+                {
+                    Console.WriteLine("\nAn Error Occured while trying to make a HttpPost Request.");
+                    Console.WriteLine(ae.InnerExceptions[0] + ": " + ae.InnerExceptions[0].Message + "\n");
+                    throw;
+                }
 
                 return resp.Content.ReadAsStringAsync().Result;
             }

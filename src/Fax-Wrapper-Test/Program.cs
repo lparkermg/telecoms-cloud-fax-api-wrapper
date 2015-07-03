@@ -10,7 +10,7 @@ namespace Fax_Wrapper_Test
 {
     class Program
     {
-        private const string _clientId = "tm7shk8t8o1TgfbJ";
+        private const string _clientId = "blank";//"tm7shk8t8o1TgfbJ";
         private const string _clientSecret = "qdmDnjkRDhT6AWh50W2z666X";
         private const string _baseUrl = "https://api.telecomscloud.com/v1/";
         private static OAuth _oAuth = new OAuth(_clientId,_clientSecret,_baseUrl);

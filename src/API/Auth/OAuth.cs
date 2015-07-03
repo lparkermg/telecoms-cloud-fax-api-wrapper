@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using API.Entities;
 using API.Http;
+using Microsoft.CSharp.RuntimeBinder;
 using Newtonsoft.Json;
 
 namespace API.Auth
@@ -50,10 +51,24 @@ namespace API.Auth
             var postResponse = _httpCommands.HttpPost(completeUrl, accessBody);
             var deserializedJson = JsonConvert.DeserializeObject<dynamic>(postResponse);
 
-            var tempAccessToken = deserializedJson.access_token.ToString();
-            var tempExpiresIn = (int)deserializedJson.expires_in;
-            var tempTokenType = deserializedJson.token_type.ToString();
-            var tempScope = deserializedJson.scope.ToString();
+            var tempAccessToken = "";
+            var tempExpiresIn = 0;
+            var tempTokenType = "";
+            var tempScope = "";
+
+            try
+            {
+                tempAccessToken = deserializedJson.access_token.ToString();
+                tempExpiresIn = (int) deserializedJson.expires_in;
+                tempTokenType = deserializedJson.token_type.ToString();
+                tempScope = deserializedJson.scope.ToString();
+            }
+            catch (RuntimeBinderException rbe)
+            {
+                Console.WriteLine("\n\nThere has been an issue decoding the json response from the server.");
+                Console.WriteLine("Returned Json: " + postResponse);
+                throw;
+            }
 
             return new ClientGrantResponse(tempAccessToken,tempExpiresIn,tempTokenType,tempScope);
         }
