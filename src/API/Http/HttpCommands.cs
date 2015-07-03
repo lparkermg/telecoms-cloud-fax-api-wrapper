@@ -102,6 +102,7 @@ namespace TcFaxApi.Http
                 {
                     using (var fileData = client.GetStreamAsync(redirect).Result)
                     {
+                        //TODO: Change to include file name and path rather than setting during the call. Actual filename is included somewhere.
                         using (var fs = new FileStream(destinationPath, FileMode.Create))
                         {
                             fileData.CopyTo(fs);
