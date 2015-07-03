@@ -58,7 +58,17 @@ namespace API.Http
                 foreach(var header in headers)
                     req.Headers.Add(header.Key,header.Value);
 
-                var resp = client.SendAsync(req).Result;
+                HttpResponseMessage resp;
+                try
+                {
+                    resp = client.SendAsync(req).Result;
+                }
+                catch (AggregateException ae)
+                {
+                    Console.WriteLine("\nAn Error Occured while trying to make a HttpGet Request.");
+                    Console.WriteLine(ae.InnerExceptions[0] + ": " + ae.InnerExceptions[0].Message + "\n");
+                    throw;
+                }
 
                 return resp.Content.ReadAsStringAsync().Result;
             }
@@ -79,17 +89,35 @@ namespace API.Http
                 foreach(var header in headers)
                     req.Headers.Add(header.Key,header.Value);
 
-                var resp = client.SendAsync(req).Result;
+                HttpResponseMessage resp;
+                try
+                {
+                    resp = client.SendAsync(req).Result;
+                }
+                catch (AggregateException ae)
+                {
+                    Console.WriteLine("\nAn Error Occured while trying to Download via Redirect.");
+                    Console.WriteLine(ae.InnerExceptions[0] + ": " + ae.InnerExceptions[0].Message + "\n");
+                    throw;
+                }
 
                 var redirect = req.RequestUri;
-
-                using (var fileData = client.GetStreamAsync(redirect).Result)
+                try
                 {
-                    using (var fs = new FileStream(destinationPath, FileMode.Create))
+                    using (var fileData = client.GetStreamAsync(redirect).Result)
                     {
-                        fileData.CopyTo(fs);
-                        fs.Flush();
+                        using (var fs = new FileStream(destinationPath, FileMode.Create))
+                        {
+                            fileData.CopyTo(fs);
+                            fs.Flush();
+                        }
                     }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("There was an issue when writing the file to disk.\n");
+                    Console.WriteLine(e + ": " + e.Message);
+                    throw;
                 }
             }
         }

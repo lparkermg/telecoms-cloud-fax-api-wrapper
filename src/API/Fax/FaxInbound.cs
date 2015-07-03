@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using API.Entities;
 using API.Entities.Fax;
 using API.Http;
+using Microsoft.CSharp.RuntimeBinder;
 using Newtonsoft.Json;
 
 namespace API
@@ -51,15 +52,23 @@ namespace API
 
             foreach (var record in records)
             {
-                var tempId = record.id.ToString();
-                var tempFromNumber = record.from_number.ToString();
-                var tempServiceNumber = record.service_number.ToString();
-                var tempPageCount = (int) record.page_count;
-                var tempReceivedDate = record.received_date.ToString();
-                var tempTiffBytes = (int) record.tiff_bytes;
-                var tempPointer = (int) record.pointer;
+                try
+                {
+                    var tempId = record.id.ToString();
+                    var tempFromNumber = record.from_number.ToString();
+                    var tempServiceNumber = record.service_number.ToString();
+                    var tempPageCount = (int) record.page_count;
+                    var tempReceivedDate = record.received_date.ToString();
+                    var tempTiffBytes = (int) record.tiff_bytes;
+                    var tempPointer = (int) record.pointer;
 
-                faxInfoCollection.Add(new FaxInfo(tempId,tempFromNumber,tempServiceNumber,tempPageCount,tempReceivedDate,tempTiffBytes,tempPointer));
+                    faxInfoCollection.Add(new FaxInfo(tempId, tempFromNumber, tempServiceNumber, tempPageCount,
+                        tempReceivedDate, tempTiffBytes, tempPointer));
+                }
+                catch (RuntimeBinderException rbe)
+                {
+                    Console.WriteLine("The was an issue adding the record. Moving onto the next one...");
+                }
             }
 
             return new FaxInfoCollectionResponse(faxInfoCollection);
