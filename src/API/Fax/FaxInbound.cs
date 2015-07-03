@@ -34,8 +34,8 @@ namespace TcFaxApi.Fax
         /// <summary>
         /// Gets the collection of faxes from the using the lastPointer as the start.
         /// </summary>
-        /// <param name="lastPointer">The what fax you want to start on.</param>
-        /// <returns>New FaxInfoCollectionResponse with any faxes in it/ [Nullable]</returns>
+        /// <param name="lastPointer">The Time (In Epoch) where you wish to start.</param>
+        /// <returns>New FaxInfoCollectionResponse with any faxes in it. [Nullable]</returns>
         public FaxInfoCollectionResponse GetFaxCollection(int lastPointer)
         {
             var faxInfoCollection = new List<FaxInfo>();
