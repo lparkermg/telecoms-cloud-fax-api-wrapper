@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using API.Entities;
-using API.Http;
 using Microsoft.CSharp.RuntimeBinder;
 using Newtonsoft.Json;
+using TcFaxApi.Entities;
+using TcFaxApi.Http;
 
-namespace API.Auth
+namespace TcFaxApi.Auth
 {
     /// <summary>
     /// OAuth related methods.

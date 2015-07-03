@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using API.Entities;
-using API.Entities.Fax;
-using API.Http;
 using Microsoft.CSharp.RuntimeBinder;
 using Newtonsoft.Json;
+using TcFaxApi.Entities;
+using TcFaxApi.Entities.Fax;
+using TcFaxApi.Http;
 
-namespace API
+namespace TcFaxApi.Fax
 {
     /// <summary>
     /// Fax related methods.

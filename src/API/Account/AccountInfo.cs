@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using API.Entities;
-using API.Http;
+﻿using System.Collections.Generic;
 using Newtonsoft.Json;
+using TcFaxApi.Entities;
+using TcFaxApi.Http;
 
-namespace API.Account
+namespace TcFaxApi.Account
 {
     /// <summary>
     /// Account related methods.

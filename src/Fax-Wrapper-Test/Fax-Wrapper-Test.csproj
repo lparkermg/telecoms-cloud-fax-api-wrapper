@@ -48,9 +48,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\API\API.csproj">
+    <ProjectReference Include="..\API\Tc-Fax-Api.csproj">
       <Project>{579df60d-dedb-46d0-9971-f8f53f5398b5}</Project>
-      <Name>API</Name>
+      <Name>Tc-Fax-Api</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Net.WebSockets;
+using System.Text;
 
-namespace API.Http
+namespace TcFaxApi.Http
 {
     /// <summary>
     /// A Small Collection of basic Http Commands.
