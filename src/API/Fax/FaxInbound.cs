@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using API.Entities;
-using API.Entities.Fax;
-using API.Http;
+using Microsoft.CSharp.RuntimeBinder;
 using Newtonsoft.Json;
+using TcFaxApi.Entities;
+using TcFaxApi.Entities.Fax;
+using TcFaxApi.Http;
 
-namespace API
+namespace TcFaxApi.Fax
 {
+    /// <summary>
+    /// Fax related methods.
+    /// </summary>
     public class FaxInbound
     {
         private ClientGrantResponse _clientGrant;
@@ -33,14 +34,14 @@ namespace API
         /// <summary>
         /// Gets the collection of faxes from the using the lastPointer as the start.
         /// </summary>
-        /// <param name="lastPointer">The what fax you want to start on.</param>
-        /// <returns>New FaxInfoCollectionResponse with any faxes in it/ [Nullable]</returns>
+        /// <param name="lastPointer">The Time (In Epoch) where you wish to start.</param>
+        /// <returns>New FaxInfoCollectionResponse with any faxes in it. [Nullable]</returns>
         public FaxInfoCollectionResponse GetFaxCollection(int lastPointer)
         {
             var faxInfoCollection = new List<FaxInfo>();
             var completeUrl = _baseApiUrl + "fax/inbound/info?last_pointer=" + lastPointer;
             SetHeaders();
-            var response = _httpCommands.HttpGet(completeUrl, "", _headers);
+            var response = _httpCommands.HttpGet(completeUrl, _headers);
 
             var deserializedJson = JsonConvert.DeserializeObject<dynamic>(response);
 
@@ -48,15 +49,23 @@ namespace API
 
             foreach (var record in records)
             {
-                var tempId = record.id.ToString();
-                var tempFromNumber = record.from_number.ToString();
-                var tempServiceNumber = record.service_number.ToString();
-                var tempPageCount = (int) record.page_count;
-                var tempReceivedDate = record.received_date.ToString();
-                var tempTiffBytes = (int) record.tiff_bytes;
-                var tempPointer = (int) record.pointer;
+                try
+                {
+                    var tempId = record.id.ToString();
+                    var tempFromNumber = record.from_number.ToString();
+                    var tempServiceNumber = record.service_number.ToString();
+                    var tempPageCount = (int) record.page_count;
+                    var tempReceivedDate = record.received_date.ToString();
+                    var tempTiffBytes = (int) record.tiff_bytes;
+                    var tempPointer = (int) record.pointer;
 
-                faxInfoCollection.Add(new FaxInfo(tempId,tempFromNumber,tempServiceNumber,tempPageCount,tempReceivedDate,tempTiffBytes,tempPointer));
+                    faxInfoCollection.Add(new FaxInfo(tempId, tempFromNumber, tempServiceNumber, tempPageCount,
+                        tempReceivedDate, tempTiffBytes, tempPointer));
+                }
+                catch (RuntimeBinderException rbe)
+                {
+                    Console.WriteLine("The was an issue adding the record. Moving onto the next one...");
+                }
             }
 
             return new FaxInfoCollectionResponse(faxInfoCollection);
@@ -78,7 +87,6 @@ namespace API
         {
             _headers = new Dictionary<string, string>
             {
-                {"Content-Type", "application/json"},
                 {"Authorization", _clientGrant.TokenType + " " + _clientGrant.AccessToken}
             };
         }

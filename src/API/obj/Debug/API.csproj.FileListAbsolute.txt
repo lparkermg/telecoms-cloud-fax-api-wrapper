@@ -1,1 +1,7 @@
 C:\Projects\Work\tc-wrapper\src\API\obj\Debug\API.csprojResolveAssemblyReference.cache
+C:\Projects\Work\tc-wrapper\src\API\bin\Debug\API.dll
+C:\Projects\Work\tc-wrapper\src\API\bin\Debug\API.pdb
+C:\Projects\Work\tc-wrapper\src\API\bin\Debug\Newtonsoft.Json.dll
+C:\Projects\Work\tc-wrapper\src\API\bin\Debug\Newtonsoft.Json.xml
+C:\Projects\Work\tc-wrapper\src\API\obj\Debug\API.dll
+C:\Projects\Work\tc-wrapper\src\API\obj\Debug\API.pdb

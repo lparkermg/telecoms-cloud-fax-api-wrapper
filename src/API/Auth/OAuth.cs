@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using API.Entities;
-using API.Http;
+using Microsoft.CSharp.RuntimeBinder;
 using Newtonsoft.Json;
+using TcFaxApi.Entities;
+using TcFaxApi.Http;
 
-namespace API.Auth
+namespace TcFaxApi.Auth
 {
     /// <summary>
-    /// OAuth Object to get Access to the TelecomsCloud API
+    /// OAuth related methods.
     /// </summary>
     public class OAuth
     {
@@ -47,13 +44,27 @@ namespace API.Auth
         {
             var completeUrl = _apiUrlBase + "authorization/oauth2/grant-client";
             var accessBody = "{\"client_id\":\"" + _clientId + "\",\"client_secret\":\"" + _clientSecret + "\"}";
-            var postResponse = _httpCommands.HttpPost(completeUrl, accessBody, _headers);
+            var postResponse = _httpCommands.HttpPost(completeUrl, accessBody);
             var deserializedJson = JsonConvert.DeserializeObject<dynamic>(postResponse);
 
-            var tempAccessToken = deserializedJson.access_token.ToString();
-            var tempExpiresIn = (int)deserializedJson.expires_in;
-            var tempTokenType = deserializedJson.token_type.ToString();
-            var tempScope = deserializedJson.scope.ToString();
+            var tempAccessToken = "";
+            var tempExpiresIn = 0;
+            var tempTokenType = "";
+            var tempScope = "";
+
+            try
+            {
+                tempAccessToken = deserializedJson.access_token.ToString();
+                tempExpiresIn = (int) deserializedJson.expires_in;
+                tempTokenType = deserializedJson.token_type.ToString();
+                tempScope = deserializedJson.scope.ToString();
+            }
+            catch (RuntimeBinderException rbe)
+            {
+                Console.WriteLine("\n\nThere has been an issue decoding the json response from the server.");
+                Console.WriteLine("Returned Json: " + postResponse);
+                throw;
+            }
 
             return new ClientGrantResponse(tempAccessToken,tempExpiresIn,tempTokenType,tempScope);
         }

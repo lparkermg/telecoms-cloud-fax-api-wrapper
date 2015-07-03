@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using API.Entities;
-using API.Http;
+﻿using System.Collections.Generic;
 using Newtonsoft.Json;
+using TcFaxApi.Entities;
+using TcFaxApi.Http;
 
-namespace API.Account
+namespace TcFaxApi.Account
 {
+    /// <summary>
+    /// Account related methods.
+    /// </summary>
     public class AccountInfo
     {
         private ClientGrantResponse _clientGrant;
@@ -38,7 +36,7 @@ namespace API.Account
         {
             var completeUrl = _baseApiUrl + "account/info";
             SetHeaders();
-            var response = _httpCommands.HttpGet(completeUrl, "", _headers);
+            var response = _httpCommands.HttpGet(completeUrl, _headers);
 
             var deserializedJson = JsonConvert.DeserializeObject<dynamic>(response);
 
@@ -53,7 +51,6 @@ namespace API.Account
 
         private void SetHeaders()
         {
-            _headers.Add("Content-Type","application/json");
             _headers.Add("Authorization", _clientGrant.TokenType + " " + _clientGrant.AccessToken);
         }
 

@@ -7,8 +7,8 @@
     <ProjectGuid>{579DF60D-DEDB-46D0-9971-F8F53F5398B5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>API</RootNamespace>
-    <AssemblyName>API</AssemblyName>
+    <RootNamespace>TcFaxApi</RootNamespace>
+    <AssemblyName>TcFaxApi</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
